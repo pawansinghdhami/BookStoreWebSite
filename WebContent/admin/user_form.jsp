@@ -13,12 +13,13 @@
 		Create New User
 		</c:if>
 </title>
+<link rel="stylesheet" href="../css/style.css"> 
 </head>
 <body>
 	<jsp:directive.include file="header.jsp" />
 
 	<div align="center">
-		<h2>
+		<h2 class="pageheading">
 		<c:if test="${user!=null }">
 		Edit User
 		</c:if>
@@ -37,7 +38,7 @@
 		<c:if test="${user==null }">
 		<form action="create_user" method="post" onsubmit="return validateFormInput()">
 		</c:if>
-			<table>
+			<table class="form">
 				<tr>
 					<td align="right">Email:</td>
 					<td align="left"><input type="text" name="email" id="email"
@@ -56,9 +57,9 @@
 					<td>&nbsp;</td>
 				</tr>
 				<tr>
-					<td colspan="2" align="center"><input type="submit"
-						value="Save" /> <input type="button" value="Cancel"
-						onclick="javascript:history.go(-1);" /></td>
+					<td colspan="2" align="center">
+					<button type="submit">Save</button>&nbsp;&nbsp;&nbsp;
+					<button onclick="javascript:history.go(-1);">Cancel</button></td>
 				</tr>
 
 			</table>

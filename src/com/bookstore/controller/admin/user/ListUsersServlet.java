@@ -13,7 +13,7 @@ import com.bookstore.controller.BaseServlet;
 
 import com.bookstore.service.UserServices;
 
-@WebServlet("/admin/list_users")
+@WebServlet("/admin/user_list")
 public class ListUsersServlet extends BaseServlet{
 	private static final long serialVersionUID = 1L;
        

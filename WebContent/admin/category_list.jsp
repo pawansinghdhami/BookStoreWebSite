@@ -5,13 +5,15 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" href="../css/style.css">
 <title>Manage Categories - Bookstore Evergreen Administration</title>
+ 
 </head>
 <body>
 	<jsp:directive.include file="header.jsp" />
 
 	<div align="center">
-		<h2>Category Management</h2>
+		<h2  class="pageheading">Category Management</h2>
 		<h3>
 			<a href="category_form.jsp">Create New Category</a>
 		</h3>
@@ -19,7 +21,7 @@
 
 <c:if test="${message!=null }">
 <div align="center">
-<h4><i>${message}</i></h4>
+<h4 class="message">${message}</h4>
 </div>
 </c:if>
 	<div align="center">

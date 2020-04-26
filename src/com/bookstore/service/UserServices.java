@@ -35,7 +35,7 @@ public class UserServices {
 
 		request.setAttribute("listUsers", listUsers);
 		request.setAttribute("message", message);
-		request.getRequestDispatcher("list_user.jsp").forward(request, response);
+		request.getRequestDispatcher("user_list.jsp").forward(request, response);
 
 	}
 

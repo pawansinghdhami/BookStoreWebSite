@@ -1,37 +1,31 @@
 package com.bookstore.dao;
 
 import static org.junit.Assert.*;
-
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
+import java.util.List;
+import javax.persistence.EntityNotFoundException;
 import javax.persistence.PersistenceException;
-
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
-
 import com.bookstore.entity.Users;
 
-public class UserDAOTest {
+public class UserDAOTest extends BaseDAOTest{
 
-	private static EntityManagerFactory entityManagerFactory;
-	private static EntityManager entityManager;
+	
 	private static UserDAO userDAO;
 
 	@BeforeClass
-	public static void setUpClass() {
-		entityManagerFactory = Persistence.createEntityManagerFactory("BookStoreWebsite");
-		entityManager = entityManagerFactory.createEntityManager();
+	public static void setUpClass() throws Exception {
+		BaseDAOTest.setUpBeforeClass();
 		userDAO = new UserDAO(entityManager);
 	}
 
 	@Test
 	public void testCreateUser() {
 		Users user1 = new Users();
-		user1.setEmail("ddfdf@user@gmail.com");
-		user1.setFullName("dfdsf dfdsfdsf");
-		user1.setPassword("al44332er");
+		user1.setEmail("neelkanth@varni.maharaj");
+		user1.setFullName("Jai Shri Neelkanth ji");
+		user1.setPassword("Neelkanth#123456");
 
 		user1 = userDAO.create(user1);
 
@@ -58,12 +52,60 @@ public class UserDAOTest {
 		String actual = user.getPassword();
 		assertEquals(expected, actual);
 	}
+	
+	@Test
+	public void testGetUsersFound() {
+		Integer userId = 7;
+		Users user = userDAO.get(userId);
+		if(user!=null)
+		System.out.println(user.getEmail());
+		assertNotNull(user);
+	}
+	
+	@Test
+	public void testGetUsersNotFound() {
+		Integer userId = 99;
+		Users user = userDAO.get(userId);
+		
+		assertNull(user);
+	}
+	
+	@Test
+	public void testDeleteUsers() {
+		Integer userId = 5;
+		userDAO.delete(userId);
+		Users user = userDAO.get(userId);
+		assertNull(user);
+	}
+	
+	@Test(expected = EntityNotFoundException.class)
+	public void testDeleteNonExistUsers() {
+		Integer userId = 58;
+		userDAO.delete(userId);
+	}
+	
+	@Test
+	public void testListAll() {
+	List<Users> listUsers = userDAO.listAll();
+	assertTrue(listUsers.size()>0);
+	}
+	
+	@Test 
+	public void testCount() {
+		long totalUsers = userDAO.count();
+		assertEquals(6, totalUsers);
+	}
+	
+	@Test
+	public void testFindByEmail() {
+		String email = "jaishrirams@saket.dham";
+		Users user = userDAO.findByEmail(email);
+		assertNotNull(user);
+	}
 
 	@AfterClass
-	public static void tearDownClass() {
-
-		entityManager.close();
-		entityManagerFactory.close();
+	public static void tearDownClass() throws Exception {
+		BaseDAOTest.tearDownAfterClass();
 	}
 
 }

@@ -6,6 +6,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 /**
@@ -13,6 +15,13 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "users", catalog = "bookstoredb")
+@NamedQueries({
+@NamedQuery(name = "Users.findAll", query = "SELECT u FROM Users u ORDER BY u.fullName"),
+@NamedQuery(name = "Users.findByEmail", query = "SELECT u FROM Users u WHERE u.email = :email"),
+@NamedQuery(name = "Users.countAll", query = "SELECT Count(*) FROM Users u")
+}
+)
+
 public class Users implements java.io.Serializable {
 
 	private Integer userId;
@@ -23,7 +32,13 @@ public class Users implements java.io.Serializable {
 	public Users() {
 	}
 
-	public Users(String email, String password, String fullName) {
+	public Users(String email, String fullName , String password) {
+		this.email = email;
+		this.password = password;
+		this.fullName = fullName;
+	}
+	public Users(Integer userId, String email, String fullName , String password) {
+		this.userId = userId;
 		this.email = email;
 		this.password = password;
 		this.fullName = fullName;

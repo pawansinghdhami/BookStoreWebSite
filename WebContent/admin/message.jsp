@@ -4,20 +4,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Evergreen Books - Online Book Store</title>
+<title>Evergreen Bookstore Administration</title>
 </head>
 <body>
 	<jsp:directive.include file="header.jsp" />
 
-	<div align="center">
-		<br />
-		<br />
-		<h3>This is main content:</h3>
-		<h2>New Books:</h2>
-		<h2>Best-Selling Books:</h2>
-		<h2>Most-favored Books:</h2>
-		<br />
-		<br />
+<div align="center">
+		<h2>${message}</h2>
 	</div>
 
 	<jsp:directive.include file="footer.jsp" />

@@ -14,7 +14,6 @@ public abstract class BaseServlet extends HttpServlet {
 	protected EntityManagerFactory entityManagerFactory;
 	protected EntityManager entityManager;
 	
-	
    
 	@Override
 	public void init() throws ServletException {
